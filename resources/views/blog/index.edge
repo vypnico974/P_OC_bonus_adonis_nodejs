@@ -1,0 +1,36 @@
+@layout('layout')
+
+
+@section('body')
+
+   <div class="navbar navbagr-expend-lg navbar-dark bg-primary mb-4">
+        <div class="containt-fluid">
+            <div class="navbar-brand px-2" href="/">Adonis</div>
+        </div>
+   </div>
+
+    <h2 class="px-2">Articles</h2>
+
+    <section class="px-2">
+        <p>
+            <a href="#" class="btn btn-primary">Créer un article</a>
+        </p>
+
+    </section>
+
+    <main>
+        <ul class="list-group mb-3">
+            @each(post in posts)
+                <li class="list-group-item">
+                    <div class="d-flex justify-content-between align-item-centers">
+                        <a href="{{route('posts.show',{id: post.id})}}">
+                            {{post.title}}
+                        </a>
+                    </div>
+                </li>
+
+            @endeach
+        </ul>
+    </main>
+
+@endsection

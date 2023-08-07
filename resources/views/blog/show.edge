@@ -1,0 +1,29 @@
+@layout('layout')
+
+
+@section('body')
+
+<h2 class="px-5">Modifier l'article {{post.title}}  </h2>
+
+<form method="pos" enctype="multipart/form-data" class="px-5">
+    @!component('components/input', {
+        label: 'titre',
+        name: 'title',
+        value: post.value
+    })
+    @!component('components/input', {
+        label: 'contenu',
+        name: 'context',
+        value: post.content,
+        type:'textarea'
+    })
+    {{--  <div>
+        <label for="title"></label>
+        <input id="title" type="text" class="form-control" name="title" value="{{post.title}}" />
+    </div>      --}}
+
+    <button class="btn btn-primary">Sauvegarder</button>
+
+</form>
+
+@endsection
