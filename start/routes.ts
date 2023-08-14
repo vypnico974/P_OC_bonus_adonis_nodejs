@@ -28,7 +28,8 @@ Route.group(() => {
     Route.get('/article/:id', 'BlogController.show').as('posts.show')
     Route.post('/article/:id', 'BlogController.update')
     Route.delete('/article/:id', 'BlogController.destroy')
-
 }).middleware('auth')
 Route.get('/',  'BlogController.index').as('home')
+Route.get('/login',  'SecurityController.login').as('login')
+Route.post('/login',  'SecurityController.doLogin')
 

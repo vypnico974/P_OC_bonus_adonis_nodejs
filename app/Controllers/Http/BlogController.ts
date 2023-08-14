@@ -3,7 +3,7 @@ import Post from '../../Models/Post'
 import UpdatePostValidator from '../../Validators/UpdatePostValidator'
 import Database from '@ioc:Adonis/Lucid/Database'
 import Category from '../../Models/Category'
-import User from '../../Models/User'
+//import User from '../../Models/User'
 //import session from '../../../config/session'
 // import View from '@ioc:Adonis/Core/View'
 
