@@ -1,0 +1,56 @@
+<form method="post" enctype="multipart/form-data" class="px-5">
+
+    <div class="row mb-3">
+        <div class="col">
+            @!component('components/input', {
+                label: 'titre',
+                name: 'title',
+                value: post.title
+            })
+
+        </div>
+        <div class="col">
+            @!component('components/input', {
+                label: 'categorie',
+                name: 'categoryId',
+                value: post.categoryId,
+                options: categories.reduce((acc,c) => ({...acc, [c.id]:c.name}), {} )
+            })
+
+        </div>
+    </div>
+    <div class="mb-3">
+       
+    </div>
+
+    <div class="mb-3">
+        @!component('components/input', {
+            label: 'contenu',
+            name: 'content',
+            value: post.content,
+            type:'textarea'
+        })        
+    </div>
+
+    <div class="mb-3">
+        <input {{post.online ? 'checked' : '' }} type="checkbox" name="online" class="form-check-input"
+        id="online" />
+        <label for="online" class="form-check-label">En ligne ?</label>
+
+    </div>
+
+    @!component('components/input', {
+        label: 'Demo',
+        name: 'demo',
+        value: 'demo'
+    })
+   
+   
+    {{--  <div>
+        <label for="title"></label>
+        <input id="title" type="text" class="form-control" name="title" value="{{post.title}}" />
+    </div>      --}}
+
+    <button class="btn btn-primary">Sauvegarder</button>
+
+</form>
