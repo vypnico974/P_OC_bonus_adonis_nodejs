@@ -20,12 +20,29 @@
         </div>
     </div>
     <div class="mb-3">
-       
+        <div class="d-flex">
+
+            @if(post.thumbnail)
+                <div class="me-3">
+                    <img src="/uploads/{{post.thumbnail}}" width="100" height="100"
+                    style="object-fit:cover" alt="" class="img-thumbnail">
+                </div>
+            @endif
+
+            @!component('components/input', {
+                label: 'Miniature',
+                name: 'thumbnail_file',
+                // value: post.content,
+                type:'file'
+            }) 
+
+        </div>
+             
     </div>
 
     <div class="mb-3">
         @!component('components/input', {
-            label: 'contenu',
+            label: 'Contenu',
             name: 'content',
             value: post.content,
             type:'textarea'
@@ -39,11 +56,11 @@
 
     </div>
 
-    @!component('components/input', {
+    {{--  @!component('components/input', {
         label: 'Demo',
         name: 'demo',
         value: 'demo'
-    })
+    })  --}}
    
    
     {{--  <div>
