@@ -4,6 +4,7 @@ import UpdatePostValidator from '../../Validators/UpdatePostValidator'
 import Database from '@ioc:Adonis/Lucid/Database'
 import Category from '../../Models/Category'
 import {string} from '@ioc:Adonis/Core/Helpers'
+import Drive from '@ioc:Adonis/Core/Drive'
 //import User from '../../Models/User'
 //import session from '../../../config/session'
 // import View from '@ioc:Adonis/Core/View'
@@ -72,22 +73,27 @@ export default class BlogController {
 
     private async handleRequest(params: HttpContextContract['params'],
      request: HttpContextContract['request'], bouncer?: HttpContextContract['bouncer'] ){
-        const post = params.id ? await Post.findOrFail(params.id) : new Post()
-        const thumbnail = request.file('thumbnail_file')
+        const post = params.id ? await Post.findOrFail(params.id) : new Post()  
+        const data = await request.validate(UpdatePostValidator)     
         if (bouncer)  {
             await bouncer.authorize('editPost', post)
         }
+        const thumbnail = request.file('thumbnailFile')
         if (thumbnail) {
+            if (post.thumbnail) {
+                await Drive.delete(post.thumbnail)
+            }
             const newName = string.generateRandom(32) + '.' + thumbnail.extname
             await thumbnail.moveToDisk('./', {name:newName})
             post.thumbnail = newName
             
         }
-        const data = await request.validate(UpdatePostValidator)
+        
         //console.log(post)
         post
             // .merge(await request.validate(UpdatePostValidator))
-            .merge({...data, online: data.online || false})
+            // .merge({...data, online: data.online || false})
+            .merge({title:data.title,categoryId:data.categoryId,content:data.content, online: data.online || false})
             .save()
     }
 }

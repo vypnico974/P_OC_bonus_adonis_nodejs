@@ -33,3 +33,6 @@ Route.get('/',  'BlogController.index').as('home')
 Route.get('/login',  'SecurityController.login').as('login')
 Route.post('/login',  'SecurityController.doLogin')
 
+Route.get('/contact', 'ContactController.contact').as('contact')
+Route.post('/contact', 'ContactController.store')
+

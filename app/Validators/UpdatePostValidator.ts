@@ -31,6 +31,10 @@ export default class UpdatePostValidator {
     categoryId: schema.number([
       rules.exists({column: Category.primaryKey, table : Category.table})
     ]),
+    thumbnailFile: schema.file({
+        size:'2mb',
+        extnames: ['jpg']
+    }),
     content: schema.string({trim:true}),
     // online: schema.boolean()
     online: schema.boolean.nullableAndOptional()
